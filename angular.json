@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/angular-utils",
       "sourceRoot": "projects/angular-utils/src",
-      "prefix": "lib",
+      "prefix": "jms-utils",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
