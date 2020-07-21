@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Renderer2 } from '@angular/core';
+import { InputContainerBase } from '../input-containers/InputContainerBase';
+import { InputContainersService } from '../input-containers/services/input-containers.service';
 
 @Component({
-  selector: 'jms-utils-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+    selector: 'jms-utils-test',
+    templateUrl: './test.component.html',
+    styleUrls: ['./test.component.css']
 })
-export class TestComponent implements OnInit {
+export class TestComponent extends InputContainerBase {
 
-  constructor() { }
+    @Input() test: string;
 
-  ngOnInit(): void {
-  }
+    constructor(renderer: Renderer2, service: InputContainersService) {
+        super(renderer, service);
 
+    }
 }
