@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label *ngIf="label">{{label}} <jms-utils-required-indicator *ngIf="isRequired()"></jms-utils-required-indicator></label><br>
+    <div class="custom-control-inline" #inputParent>
+        <ng-content></ng-content>
+    </div>
+    <jms-utils-input-feedback [fControl]="formControl"></jms-utils-input-feedback>
+</div>

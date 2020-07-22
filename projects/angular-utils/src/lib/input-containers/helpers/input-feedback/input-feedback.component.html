@@ -1,0 +1,6 @@
+<div *ngIf="showWhenInvalid && fControl.invalid" [ngClass]="feedbackInvalidClasses">
+    {{errorFeedbackMessage()}}
+</div>
+<div *ngIf="showWhenValid && fControl.valid" [ngClass]="feedbackValidClasses">
+    {{validFeedbackMessage}}
+</div>

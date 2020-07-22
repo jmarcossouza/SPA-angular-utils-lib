@@ -75,7 +75,6 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
         this.shouldApplyInvalidClass = this.service.inputContainersConfig.shouldApplyInvalidClass;
         this.shouldApplyValidClass = this.service.inputContainersConfig.shouldApplyValidClass;
         this.validFeedbackMessage = this.service.inputContainersConfig.validFeedbackMessage;
-        console.log('invalid class: ', this.invalidClass);
     }
 
     ngAfterViewInit(): void {
@@ -107,10 +106,10 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
     protected subscriptionsInput(): void {
         // Pra cada elemento filho... (Nem adianta tentar substituir isso por forEach que não da.)
         // tslint:disable-next-line: prefer-for-of
-        for (let index = 0; index < this.inputChildren.length; index++) {
+        for (let index = 0; index < this.inputChildren().length; index++) {
             // Adicionar um listener ao evento de blur no formControl.
             // Assim eu posso atualizar a classe sempre que o usuário mexer no `<input>`.
-            this.renderer.listen(this.inputChildren[index],
+            this.renderer.listen(this.inputChildren()[index],
                 'blur',
                 () => {
                     this.applyInputClass();
@@ -133,30 +132,30 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
                 // Remover a classe de válido.
                 if (this.shouldApplyValidClass === true) {
                     // tslint:disable-next-line: prefer-for-of
-                    for (let index = 0; index < this.inputChildren.length; index++) {
-                        this.renderer.removeClass(this.inputChildren[index], this.validClass);
+                    for (let index = 0; index < this.inputChildren().length; index++) {
+                        this.renderer.removeClass(this.inputChildren()[index], this.validClass);
                     }
                 }
 
                 // Adicionar a classe de inválido.
                 // tslint:disable-next-line: prefer-for-of
-                for (let index = 0; index < this.inputChildren.length; index++) {
-                    this.renderer.addClass(this.inputChildren[index], this.invalidClass);
+                for (let index = 0; index < this.inputChildren().length; index++) {
+                    this.renderer.addClass(this.inputChildren()[index], this.invalidClass);
                 }
             } else {
                 // Remover a classe de inválido.
                 if (this.shouldApplyInvalidClass === true) {
                     // tslint:disable-next-line: prefer-for-of
-                    for (let index = 0; index < this.inputChildren.length; index++) {
-                        this.renderer.removeClass(this.inputChildren[index], this.invalidClass);
+                    for (let index = 0; index < this.inputChildren().length; index++) {
+                        this.renderer.removeClass(this.inputChildren()[index], this.invalidClass);
                     }
                 }
 
                 // Adicionar a classe de válido.
                 if (this.shouldApplyValidClass === true) {
                     // tslint:disable-next-line: prefer-for-of
-                    for (let index = 0; index < this.inputChildren.length; index++) {
-                        this.renderer.addClass(this.inputChildren[index], this.validClass);
+                    for (let index = 0; index < this.inputChildren().length; index++) {
+                        this.renderer.addClass(this.inputChildren()[index], this.validClass);
                     }
                 }
             }
@@ -166,7 +165,7 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
     /**
      * @description Retorna se no formControl há o Validator required do angular ``Validators.required``
      */
-    public get isRequired(): boolean {
+    public isRequired(): boolean {
         if (this.formControl.validator) { // Verificar se há algum validator antes
             // Se existir o required vai retornar um objeto { required: true }
             // tslint:disable-next-line: variable-name
@@ -228,8 +227,8 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
     public applyLabelIdentifierFromInput(): void {
         if (this.autoSetId === true) {
             // tslint:disable-next-line: prefer-for-of
-            for (let index = 0; index < this.inputChildren.length; index++) {
-                const input = this.inputChildren[index];
+            for (let index = 0; index < this.inputChildren().length; index++) {
+                const input = this.inputChildren()[index];
                 const label = this.findBetweenChildElements('label', input.parentElement.children)[0];
 
                 if (input && label) {
