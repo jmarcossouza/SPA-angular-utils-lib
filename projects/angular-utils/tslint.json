@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "jms-utils",
+      "jmsutils",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "jms-utils",
+      "jmsutils",
       "kebab-case"
     ]
   }

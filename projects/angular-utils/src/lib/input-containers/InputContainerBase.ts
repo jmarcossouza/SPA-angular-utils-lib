@@ -2,9 +2,10 @@ import { Input, ElementRef, ViewChild, Renderer2, OnDestroy, AfterViewInit, Inje
 import { FormControl, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { InputContainersService } from './services/input-containers.service';
+import { IInputContainersConfig, IFeedbackErrorsMessages, IRequiredIndicator } from './models/input-containers-config.interface';
 
 @Directive()
-export class InputContainerBase implements OnDestroy, AfterViewInit {
+export class InputContainerBase implements IInputContainersConfig, OnDestroy, AfterViewInit {
 
     /**
      * @description Contador de instancias do InputContainer, não me pergunte porque eu não usei um service, não
@@ -14,14 +15,6 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
     public static get instanceCount(): number {
         return ++InputContainerBase.inputInstances;
     }
-    /**
-     * @description Decide se deve ou não REMOVER e aplicar novos atributos HTML `id` e `for` para os `<input>` e seus
-     * respectivos`<label>`. O maior intuito disso é aplicar automaticamente os atributos quando for o caso de
-     * `<input type="radio">` ou `<input type="checkbox">`
-     * Se TRUE vai aplicar, se FALSE não irá mexer nos ids.
-     * @description Se você usa o atributo HTML id pra alguma outra coisa, deve setar isso como false.
-     */
-    @Input() autoSetId = true;
 
     /**
      * @description String com classes (css) a serem aplicadas à `<div>` principal (que contém a classe 'form-group')
@@ -35,31 +28,24 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
      * @description String que será exibida no `<label>`
      */
     @Input() label: string;
-    /**
-     * @description classe (css) que será aplicada no `<input>` se o FormControl for inválido. Para o framework css
-     * bootstrap usamos 'is-invalid'
-     */
-    @Input() invalidClass: string;
-    /**
-     * @description classe (css) que será aplicada no `<input>` se o FormControl for válido. Para o framework css
-     * bootstrap usamos 'is-valid'
-     */
+
+    //#region Implementados da interface InputContainersConfig
+    @Input() inputParentClass: string;
+    @Input() autoSetId;
     @Input() validClass: string;
-    /**
-     * @description boleano que decide se deve ou não aplicar a classe (css) atribuída na variável `invalidClass` quando o
-     * FormControl for inválido
-     */
-    @Input() shouldApplyInvalidClass: boolean;
-    /**
-     * @description boleano que decide se deve ou não aplicar a classe (css) atribuída na variável `validClass` quando
-     * o FormControl for válido
-     */
+    @Input() invalidClass: string;
     @Input() shouldApplyValidClass: boolean;
-    /**
-     * @description Mensagem de feedback que deve ser exibida em baixo do `<input>` quando o FormControl for válido.
-     * @description Só aparece se `shouldApplyValidClass` for true.
-     */
-    @Input() validFeedbackMessage = 'Ok.';
+    @Input() shouldApplyInvalidClass: boolean;
+    @Input() validFeedbackMessage;
+    @Input() feedbackInvalidClasses: string;
+    @Input() feedbackValidClasses: string;
+    @Input() shouldShowInvalidFeedback: boolean;
+    @Input() shouldShowValidFeedback: boolean;
+    @Input() emptyLabel: boolean;
+    @Input() feedbackErrorsMessages: IFeedbackErrorsMessages;
+    @Input() requiredIndicator: IRequiredIndicator;
+    //#endregion
+
     @ViewChild('inputParent', { static: false }) inputParent: ElementRef;
 
     /**
@@ -69,12 +55,20 @@ export class InputContainerBase implements OnDestroy, AfterViewInit {
     private subscriptions: Subscription = new Subscription();
 
     constructor(private renderer: Renderer2, private service: InputContainersService) {
+        this.inputParentClass = this.service.inputContainersConfig.inputParentClass;
         this.autoSetId = this.service.inputContainersConfig.autoSetId;
-        this.invalidClass = this.service.inputContainersConfig.invalidClass;
         this.validClass = this.service.inputContainersConfig.validClass;
-        this.shouldApplyInvalidClass = this.service.inputContainersConfig.shouldApplyInvalidClass;
+        this.invalidClass = this.service.inputContainersConfig.invalidClass;
         this.shouldApplyValidClass = this.service.inputContainersConfig.shouldApplyValidClass;
+        this.shouldApplyInvalidClass = this.service.inputContainersConfig.shouldApplyInvalidClass;
         this.validFeedbackMessage = this.service.inputContainersConfig.validFeedbackMessage;
+        this.feedbackInvalidClasses = this.service.inputContainersConfig.feedbackInvalidClasses;
+        this.feedbackValidClasses = this.service.inputContainersConfig.feedbackValidClasses;
+        this.shouldShowInvalidFeedback = this.service.inputContainersConfig.shouldShowInvalidFeedback;
+        this.shouldShowValidFeedback = this.service.inputContainersConfig.shouldShowValidFeedback;
+        this.emptyLabel = this.service.inputContainersConfig.emptyLabel;
+        this.feedbackErrorsMessages = (this.service.inputContainersConfig.feedbackErrorsMessages as IFeedbackErrorsMessages);
+        this.requiredIndicator = (this.service.inputContainersConfig.requiredIndicator as IRequiredIndicator);
     }
 
     ngAfterViewInit(): void {

@@ -1,0 +1,51 @@
+<div class="container m-t-100">
+    <div class="form-row" [formGroup]="form1">
+        <jmsutils-input-text-container label="Nome" class="col-lg" [fControl]="form1.controls.nome">
+            <input type="text" class="form-control" formControlName="nome" placeholder="Nome">
+        </jmsutils-input-text-container>
+
+        <jmsutils-input-text-container label="Email" class="col-lg" [fControl]="form1.controls.email"
+            [shouldApplyValidClass]="true">
+            <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        </jmsutils-input-text-container>
+    </div>
+
+    <div class="form-row" [formGroup]="form1">
+        <jmsutils-radio-container [fControl]="form1.controls.sexo" label="Sexo" class="col-lg">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" formControlName="sexo" value="M" class="custom-control-input">
+                <label class="custom-control-label">Masculino</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" formControlName="sexo" value="F" class="custom-control-input">
+                <label class="custom-control-label">Feminino</label>
+            </div>
+        </jmsutils-radio-container>
+
+        <jmsutils-checkbox-container [fControl]="form1.controls.concordaTermos" class="col-lg" [shouldApplyValidClass]="true"
+            validFeedbackMessage="Obrigado, agora podemos te espionar e vender seus dados legalmente." [shouldShowValidFeedback]="true">
+            <input type="checkbox" formControlName="concordaTermos" class="custom-control-input">
+            <label class="custom-control-label">Concordo com os termos de uso</label>
+        </jmsutils-checkbox-container>
+    </div>
+
+    <hr />
+    <ng-container [formGroup]="form2">
+        <jmsutils-input-text-container2 [fControl]="form2.controls.nome" label="Nome">
+            <input type="text" class="form-control" formControlName="nome" placeholder="Nome">
+        </jmsutils-input-text-container2>
+
+        <jmsutils-input-text-container [fControl]="form2.controls.email" inputParentClass="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">Email</div>
+            </div>
+            <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        </jmsutils-input-text-container>
+    </ng-container>
+
+    <button class="btn btn-primary" (click)="value = form1.getRawValue()">Valor Form</button>
+</div>
+
+<div class="bg-light border rounded m-t-40" *ngIf="value">
+    <pre>{{value | json}}</pre>
+</div>

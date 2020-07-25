@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularUtilsModule } from 'angular-utils';
+import { FormulariosComponent } from './pages/formularios/formularios.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormulariosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularUtilsModule
+    AngularUtilsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

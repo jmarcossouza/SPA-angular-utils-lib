@@ -3,7 +3,7 @@ import { InputContainerBase } from '../InputContainerBase';
 import { InputContainersService } from '../services/input-containers.service';
 
 @Component({
-    selector: 'jms-utils-input-text-container2',
+    selector: 'jmsutils-input-text-container2',
     templateUrl: './input-text-container2.component.html',
     styles: []
 })

@@ -3,7 +3,7 @@ import { InputContainerBase } from '../InputContainerBase';
 import { InputContainersService } from '../services/input-containers.service';
 
 @Component({
-    selector: 'jms-utils-radio-container',
+    selector: 'jmsutils-radio-container',
     templateUrl: './radio-container.component.html',
     styles: []
 })

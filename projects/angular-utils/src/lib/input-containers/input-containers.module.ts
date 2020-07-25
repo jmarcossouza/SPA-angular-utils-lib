@@ -1,8 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputContainersService } from './services/input-containers.service';
-import { InputContainersConfig } from './models/input-containers-config.interface';
-import { ReactiveFormsModule } from '@angular/forms';
+import { InputContainersConfigModel } from './models/input-containers-config.model';
 import { CheckboxContainerComponent } from './checkbox-container/checkbox-container.component';
 import { InputFeedbackComponent } from './helpers/input-feedback/input-feedback.component';
 import { RequiredIndicatorComponent } from './helpers/required-indicator/required-indicator.component';
@@ -10,7 +9,7 @@ import { InputTextContainerComponent } from './input-text-container/input-text-c
 import { InputTextContainer2Component } from './input-text-container2/input-text-container2.component';
 import { RadioContainerComponent } from './radio-container/radio-container.component';
 
-const defaultConfig: InputContainersConfig = {
+const defaultConfig: InputContainersConfigModel = {
     inputParentClass: '',
     invalidClass: 'is-invalid',
     feedbackInvalidClasses: 'invalid-feedback',
@@ -71,10 +70,10 @@ const defaultConfig: InputContainersConfig = {
     ]
 })
 export class InputContainersModule {
-    public static setDefaultConfig(config: InputContainersConfig): ModuleWithProviders<InputContainersModule> {
+    public static setDefaultConfig(config: InputContainersConfigModel): ModuleWithProviders<InputContainersModule> {
         config.feedbackErrorsMessages = { ...defaultConfig.feedbackErrorsMessages, ...config.feedbackErrorsMessages };
         config.requiredIndicator = { ...defaultConfig.requiredIndicator, ...config.requiredIndicator };
-        const mergedConfig: InputContainersConfig = { ...defaultConfig, ...config };
+        const mergedConfig: InputContainersConfigModel = { ...defaultConfig, ...config };
 
         return {
             ngModule: InputContainersModule,

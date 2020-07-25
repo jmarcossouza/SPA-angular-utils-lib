@@ -1,11 +1,11 @@
-import { InputContainersConfig } from '../models/input-containers-config.interface';
+import { InputContainersConfigModel } from '../models/input-containers-config.model';
 
 /**
  * @description singleton service dos input containers
  */
 export class InputContainersService {
 
-    public inputContainersConfig: InputContainersConfig;
+    public inputContainersConfig: InputContainersConfigModel;
 
     constructor() { }
 }

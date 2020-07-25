@@ -1,47 +1,52 @@
 import { Component, Input, Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, AbstractControl } from '@angular/forms';
 import { InputContainersService } from '../../services/input-containers.service';
-import { FeedbackErrorsMessages } from '../../models/input-containers-config.interface';
+import { FeedbackErrorsMessagesModel } from '../../models/input-containers-config.model';
 
 @Component({
-    selector: 'jms-utils-input-feedback',
+    selector: 'jmsutils-input-feedback',
     templateUrl: './input-feedback.component.html',
     styles: []
 })
 export class InputFeedbackComponent {
 
-    @Input() public fControl: FormControl;
+    @Input() public fControl: AbstractControl;
     /**
      * @description Decide se deve ser mostrada alguma mensagem quando o campo for INVÁLIDO.
      */
-    @Input() public showWhenInvalid: boolean;
+    @Input() public shouldShowInvalidFeedback: boolean;
     @Input() public feedbackInvalidClasses: string;
     /**
      * @description Decide se deve ser mostrada alguma mensagem quando o campo for VÁLIDO.
      */
-    @Input() public showWhenValid: boolean;
+    @Input() public shouldShowValidFeedback: boolean;
     @Input() public feedbackValidClasses: string;
     @Input() public validFeedbackMessage: string;
-    @Input() public feedbackErrorsMessages: FeedbackErrorsMessages;
+    @Input() public feedbackErrorsMessages: FeedbackErrorsMessagesModel;
     private replaceString = '{{{ param }}}';
 
     constructor(@Inject(InputContainersService) private service: InputContainersService) {
-        this.showWhenInvalid = this.service.inputContainersConfig.shouldShowInvalidFeedback;
+        this.shouldShowInvalidFeedback = this.service.inputContainersConfig.shouldShowInvalidFeedback;
         this.feedbackInvalidClasses = this.service.inputContainersConfig.feedbackInvalidClasses;
-        this.showWhenValid = this.service.inputContainersConfig.shouldShowValidFeedback;
+        this.shouldShowValidFeedback = this.service.inputContainersConfig.shouldShowValidFeedback;
         this.feedbackValidClasses = this.service.inputContainersConfig.feedbackValidClasses;
         this.validFeedbackMessage = this.service.inputContainersConfig.validFeedbackMessage;
         this.feedbackErrorsMessages = this.service.inputContainersConfig.feedbackErrorsMessages;
     }
 
+    public get formControlDirty(): boolean {
+        return this.fControl && (this.fControl.dirty || this.fControl.touched);
+    }
+
     /**
-     * @description Método que apresenta as mensagens de erro. Ele é baseado nos booleanos showWhenValid e showWhenInvalid.
+     * @description Método que apresenta as mensagens de erro. Ele é baseado nos booleanos
+     * shouldShowValidFeedback e shouldShowInvalidFeedback.
      * Ou seja, só irá retornar as mensagens de erro se eles estiverem true. Não vou entrar em muito detalhes,
      * porque é um método fácil de entender e mudar suas propriedades.
      * @returns Mensagem de válida ou inválida de acordo com o erro do fControl.
      */
     public errorFeedbackMessage(): string {
-        if (this.fControl && (this.fControl.dirty || this.fControl.touched)) {
+        if (this.fControl.errors) {
             const error = this.fControl.errors;
 
             // Mensagens de campo inválido.
@@ -66,5 +71,4 @@ export class InputFeedbackComponent {
 
         return null;
     }
-
 }

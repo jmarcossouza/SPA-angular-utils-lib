@@ -17,3 +17,5 @@ export * from './lib/input-containers/helpers/required-indicator/required-indica
 export * from './lib/input-containers/input-text-container/input-text-container.component';
 export * from './lib/input-containers/input-text-container2/input-text-container2.component';
 export * from './lib/input-containers/radio-container/radio-container.component';
+export * from './lib/input-containers/models/input-containers-config.model';
+//export * from './lib/input-containers/models/input-containers-config.interface';

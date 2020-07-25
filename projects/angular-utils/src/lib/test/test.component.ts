@@ -1,7 +1,7 @@
 import { Component, Input} from '@angular/core';
 
 @Component({
-    selector: 'jms-utils-test',
+    selector: 'jmsutils-test',
     templateUrl: './test.component.html',
     styleUrls: ['./test.component.css']
 })

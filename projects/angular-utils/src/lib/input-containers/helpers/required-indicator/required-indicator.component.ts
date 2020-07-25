@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { InputContainersService } from '../../services/input-containers.service';
 
 @Component({
-    selector: 'jms-utils-required-indicator',
+    selector: 'jmsutils-required-indicator',
     template: `<span *ngIf="requiredIndicatorType === 'span'; else iconRequiredIndicator" [ngClass]="requiredIndicatorClasses">{{ requiredIndicatorMessage }}</span><ng-template #iconRequiredIndicator><i [ngClass]="requiredIndicatorClasses">{{ requiredIndicatorMessage }}</i></ng-template>`,
     styles: []
 })

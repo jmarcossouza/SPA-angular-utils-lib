@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
     ],
     exports: [
         TestComponent,
+        InputContainersModule,
     ],
 })
 export class AngularUtilsModule { }

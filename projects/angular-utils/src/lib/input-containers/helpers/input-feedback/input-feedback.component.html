@@ -1,6 +1,8 @@
-<div *ngIf="showWhenInvalid && fControl.invalid" [ngClass]="feedbackInvalidClasses">
-    {{errorFeedbackMessage()}}
+<!-- O style display block é importante para contornar um esquema do bootstrap em que o estilo display:none é aplicado na is-invalid e ele tira
+    através de um esquema com as classes, mas eu já tenho o ngIf, então eu posso deixar sempre display:block -->
+<div *ngIf="shouldShowInvalidFeedback && fControl.invalid && formControlDirty" [ngClass]="feedbackInvalidClasses" style="display: block;">
+    {{ errorFeedbackMessage() }}
 </div>
-<div *ngIf="showWhenValid && fControl.valid" [ngClass]="feedbackValidClasses">
+<div *ngIf="shouldShowValidFeedback && fControl.valid && formControlDirty" [ngClass]="feedbackValidClasses" style="display: block;">
     {{validFeedbackMessage}}
 </div>
