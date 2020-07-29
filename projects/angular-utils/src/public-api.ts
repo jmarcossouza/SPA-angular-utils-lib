@@ -1,6 +1,7 @@
 /*
  * Public API Surface of angular-utils
  */
+export { ReactiveFormsUtils } from './lib/class/ReactiveFormsUtils';
 
 /**
  * Bootstrap Input Containers

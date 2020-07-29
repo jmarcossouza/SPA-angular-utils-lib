@@ -3,6 +3,7 @@ import { FormControl, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { BootstrapInputContainersService } from './services/bootstrap-input-containers.service';
 import { IBootstrapInputContainersConfig, IFeedbackErrorsMessages, IRequiredIndicator } from './models/bootstrap-input-containers-config.interface';
+import { ReactiveFormsUtils } from '../../class/ReactiveFormsUtils';
 
 @Directive()
 export class BootstrapInputContainerBase implements IBootstrapInputContainersConfig, OnDestroy, AfterViewInit {
@@ -160,13 +161,7 @@ export class BootstrapInputContainerBase implements IBootstrapInputContainersCon
      * @description Retorna se no formControl há o Validator required do angular ``Validators.required``
      */
     public isRequired(): boolean {
-        if (this.formControl.validator) { // Verificar se há algum validator antes
-            // Se existir o required vai retornar um objeto { required: true }
-            // tslint:disable-next-line: variable-name
-            const _validator: any = this.formControl.validator({} as AbstractControl);
-            return (_validator && _validator.required) ? true : false;
-        }
-        return false;
+        return ReactiveFormsUtils.hasRequiredValidator(this.formControl as FormControl);
     }
 
     /**
