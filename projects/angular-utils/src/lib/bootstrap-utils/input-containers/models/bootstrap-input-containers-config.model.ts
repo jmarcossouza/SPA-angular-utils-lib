@@ -1,6 +1,6 @@
-export class InputContainersConfigModel {
+export class BootstrapInputContainersConfigModel {
     /**
-     * @description Pra injetar alguma classe na `<div>` pai do `<input>` em `<jmsutils-input-text-container>`.
+     * @description Pra injetar alguma classe na `<div>` pai do `<input>` em `<jmsutils-bootstrap-input-text-container>`.
      * @description Criei isso pra poder usar os inputs com append e prepend.
      * @example
      * <div [ngClass]="inputParentClass">

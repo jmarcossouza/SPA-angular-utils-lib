@@ -1,14 +1,14 @@
 import { Component, Input, Inject } from '@angular/core';
-import { FormControl, AbstractControl } from '@angular/forms';
-import { InputContainersService } from '../../services/input-containers.service';
-import { FeedbackErrorsMessagesModel } from '../../models/input-containers-config.model';
+import { AbstractControl } from '@angular/forms';
+import { BootstrapInputContainersService } from '../../services/bootstrap-input-containers.service';
+import { FeedbackErrorsMessagesModel } from '../../models/bootstrap-input-containers-config.model';
 
 @Component({
-    selector: 'jmsutils-input-feedback',
-    templateUrl: './input-feedback.component.html',
+    selector: 'jmsutils-bootstrap-input-feedback',
+    templateUrl: './bootstrap-input-feedback.component.html',
     styles: []
 })
-export class InputFeedbackComponent {
+export class BootstrapInputFeedbackComponent {
 
     @Input() public fControl: AbstractControl;
     /**
@@ -25,7 +25,7 @@ export class InputFeedbackComponent {
     @Input() public feedbackErrorsMessages: FeedbackErrorsMessagesModel;
     private replaceString = '{{{ param }}}';
 
-    constructor(@Inject(InputContainersService) private service: InputContainersService) {
+    constructor(@Inject(BootstrapInputContainersService) private service: BootstrapInputContainersService) {
         this.shouldShowInvalidFeedback = this.service.inputContainersConfig.shouldShowInvalidFeedback;
         this.feedbackInvalidClasses = this.service.inputContainersConfig.feedbackInvalidClasses;
         this.shouldShowValidFeedback = this.service.inputContainersConfig.shouldShowValidFeedback;

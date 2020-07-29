@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { TestComponent } from './test/test.component';
-import { InputContainersModule } from './input-containers/input-containers.module';
+import { BootstrapInputContainersModule } from './bootstrap-utils/input-containers/bootstrap-input-containers.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [TestComponent],
     imports: [
         CommonModule,
-        InputContainersModule,
+        BootstrapInputContainersModule,
     ],
     exports: [
         TestComponent,
-        InputContainersModule,
+        BootstrapInputContainersModule,
     ],
 })
 export class AngularUtilsModule { }

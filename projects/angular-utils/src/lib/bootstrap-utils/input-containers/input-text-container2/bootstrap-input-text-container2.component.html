@@ -1,0 +1,11 @@
+<div class="form-group row">
+    <label class="col-form-label" [ngClass]="labelClass">{{label}} <jmsutils-bootstrap-required-indicator *ngIf="isRequired()">
+        </jmsutils-bootstrap-required-indicator></label>
+    <div #inputParent [ngClass]="inputClass">
+        <ng-content></ng-content>
+        <jmsutils-bootstrap-input-feedback [fControl]="fControl" [shouldShowInvalidFeedback]="shouldShowInvalidFeedback"
+            [feedbackInvalidClasses]="feedbackInvalidClasses" [shouldShowValidFeedback]="shouldShowValidFeedback"
+            [feedbackValidClasses]="feedbackValidClasses" [validFeedbackMessage]="validFeedbackMessage"
+            [feedbackErrorsMessages]="feedbackErrorsMessages"></jmsutils-bootstrap-input-feedback>
+    </div>
+</div>

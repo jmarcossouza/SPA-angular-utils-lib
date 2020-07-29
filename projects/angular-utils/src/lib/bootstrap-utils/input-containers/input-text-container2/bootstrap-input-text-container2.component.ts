@@ -1,15 +1,15 @@
 import { Component, Renderer2, Input, Inject } from '@angular/core';
-import { InputContainerBase } from '../InputContainerBase';
-import { InputContainersService } from '../services/input-containers.service';
+import { BootstrapInputContainerBase } from '../BootstrapInputContainerBase';
+import { BootstrapInputContainersService } from '../services/bootstrap-input-containers.service';
 
 @Component({
-    selector: 'jmsutils-input-text-container2',
-    templateUrl: './input-text-container2.component.html',
+    selector: 'jmsutils-bootstrap-input-text-container2',
+    templateUrl: './bootstrap-input-text-container2.component.html',
     styles: []
 })
-export class InputTextContainer2Component extends InputContainerBase {
+export class BootstrapBootstrapInputTextContainer2Component extends BootstrapInputContainerBase {
 
-    constructor(renderer: Renderer2, @Inject(InputContainersService) service: InputContainersService) {
+    constructor(renderer: Renderer2, @Inject(BootstrapInputContainersService) service: BootstrapInputContainersService) {
         super(renderer, service);
     }
 

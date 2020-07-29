@@ -1,15 +1,15 @@
 import { Component, Renderer2, Inject } from '@angular/core';
-import { InputContainerBase } from '../InputContainerBase';
-import { InputContainersService } from '../services/input-containers.service';
+import { BootstrapInputContainerBase } from '../BootstrapInputContainerBase';
+import { BootstrapInputContainersService } from '../services/bootstrap-input-containers.service';
 
 @Component({
-    selector: 'jmsutils-radio-container',
-    templateUrl: './radio-container.component.html',
+    selector: 'jmsutils-bootstrap-radio-container',
+    templateUrl: './bootstrap-radio-container.component.html',
     styles: []
 })
-export class RadioContainerComponent extends InputContainerBase {
+export class BootstrapRadioContainerComponent extends BootstrapInputContainerBase {
 
-    constructor(renderer: Renderer2, @Inject(InputContainersService) service: InputContainersService) {
+    constructor(renderer: Renderer2, @Inject(BootstrapInputContainersService) service: BootstrapInputContainersService) {
         super(renderer, service);
     }
 

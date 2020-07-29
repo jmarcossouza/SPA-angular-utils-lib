@@ -1,11 +1,11 @@
 import { Input, ElementRef, ViewChild, Renderer2, OnDestroy, AfterViewInit, Inject, Directive } from '@angular/core';
 import { FormControl, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { InputContainersService } from './services/input-containers.service';
-import { IInputContainersConfig, IFeedbackErrorsMessages, IRequiredIndicator } from './models/input-containers-config.interface';
+import { BootstrapInputContainersService } from './services/bootstrap-input-containers.service';
+import { IBootstrapInputContainersConfig, IFeedbackErrorsMessages, IRequiredIndicator } from './models/bootstrap-input-containers-config.interface';
 
 @Directive()
-export class InputContainerBase implements IInputContainersConfig, OnDestroy, AfterViewInit {
+export class BootstrapInputContainerBase implements IBootstrapInputContainersConfig, OnDestroy, AfterViewInit {
 
     /**
      * @description Contador de instancias do InputContainer, não me pergunte porque eu não usei um service, não
@@ -13,7 +13,7 @@ export class InputContainerBase implements IInputContainersConfig, OnDestroy, Af
      */
     private static inputInstances = 0;
     public static get instanceCount(): number {
-        return ++InputContainerBase.inputInstances;
+        return ++BootstrapInputContainerBase.inputInstances;
     }
 
     /**
@@ -54,7 +54,7 @@ export class InputContainerBase implements IInputContainersConfig, OnDestroy, Af
      */
     private subscriptions: Subscription = new Subscription();
 
-    constructor(private renderer: Renderer2, private service: InputContainersService) {
+    constructor(private renderer: Renderer2, private service: BootstrapInputContainersService) {
         this.inputParentClass = this.service.inputContainersConfig.inputParentClass;
         this.autoSetId = this.service.inputContainersConfig.autoSetId;
         this.validClass = this.service.inputContainersConfig.validClass;
@@ -207,7 +207,7 @@ export class InputContainerBase implements IInputContainersConfig, OnDestroy, Af
             this.renderer.removeAttribute(inputElement, 'id');
             this.renderer.removeAttribute(labelElement, 'for');
 
-            const identifier = `utsInput${InputContainerBase.instanceCount.toString()}`;
+            const identifier = `utsInput${BootstrapInputContainerBase.instanceCount.toString()}`;
 
             this.renderer.setAttribute(inputElement, 'id', identifier);
             this.renderer.setAttribute(labelElement, 'for', identifier);

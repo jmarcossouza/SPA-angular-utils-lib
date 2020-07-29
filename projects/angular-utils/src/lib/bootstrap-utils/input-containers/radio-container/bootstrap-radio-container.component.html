@@ -1,11 +1,11 @@
 <div class="form-group">
-    <label *ngIf="label">{{label}} <jmsutils-required-indicator *ngIf="isRequired()"></jmsutils-required-indicator>
+    <label *ngIf="label">{{label}} <jmsutils-bootstrap-required-indicator *ngIf="isRequired()"></jmsutils-bootstrap-required-indicator>
         </label><br>
     <div class="custom-control-inline" #inputParent>
         <ng-content></ng-content>
     </div>
-    <jmsutils-input-feedback [fControl]="fControl" [shouldShowInvalidFeedback]="shouldShowInvalidFeedback"
+    <jmsutils-bootstrap-input-feedback [fControl]="fControl" [shouldShowInvalidFeedback]="shouldShowInvalidFeedback"
         [feedbackInvalidClasses]="feedbackInvalidClasses" [shouldShowValidFeedback]="shouldShowValidFeedback"
         [feedbackValidClasses]="feedbackValidClasses" [validFeedbackMessage]="validFeedbackMessage"
-        [feedbackErrorsMessages]="feedbackErrorsMessages"></jmsutils-input-feedback>
+        [feedbackErrorsMessages]="feedbackErrorsMessages"></jmsutils-bootstrap-input-feedback>
 </div>
